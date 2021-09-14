@@ -1,0 +1,72 @@
+export default function Signup(){
+    return(
+        <form>
+            <input
+                type='text'
+                name='first_name'
+                placeholder='First Name'
+                className='p-4'
+                />
+            <input
+                type='text'
+                name='last_name'
+                placeholder='Last Name'
+                className='p-4'
+                />
+            <input
+                type='address'
+                name='address_1'
+                placeholder='Address 1'
+                className='p-4'
+                />
+            <input
+                type='address'
+                name='address_2'
+                placeholder='Address 2'
+                className='p-4'
+                />
+            <input
+                type='text'
+                name='city'
+                placeholder='City'
+                className='p-4'
+                />
+            <input
+                type='text'
+                name='state'
+                placeholder='State'
+                className='p-4'
+                />
+            <input
+                type='text'
+                name='zip'
+                placeholder='ZipCode'
+                className='p-4'
+                />
+            <input
+                type='tel'
+                name='phone'
+                className='p-4'
+                />
+            <input
+                type='text'
+                name='username'
+                placeholder='Username'
+                className='p-4'
+                />
+            <input
+                type='email'
+                name='email'
+                placeholder='john.smith@email.com'
+                className='p-4'
+                />
+            <input
+                type='password'
+                name='password'
+                placeholder='Password'
+                className='p-4'
+                />
+            <button type='submit'>SignUp</button>
+        </form>
+    )
+}
