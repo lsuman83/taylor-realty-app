@@ -1,7 +1,7 @@
-import Navbar from './Navbar'
-import Home from './Home'
-import Login from './LoginNSignup/Login'
-import Signup from './LoginNSignup/Signup'
+import Navbar from './components/Navbar'
+import { Home } from './components/home/Home'
+import Login from './components/auth/Login'
+import Signup from './components/auth/Signup'
 import { BrowserRouter as Router,
           Switch,
           Route } from 'react-router-dom'
