@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import { checkAuth } from '../actions/auth';
+import Login from './auth/Login';
 import Logout from './auth/Logout';
+import { Welcome } from './welcome';
 
 
 
@@ -11,7 +13,7 @@ class Navbar extends React.Component {
     
         const {authChecked, loggedIn, currentUser} = this.props
 
-
+        debugger
         return loggedIn ? (
             <nav>
                 {currentUser.email}
@@ -24,20 +26,7 @@ class Navbar extends React.Component {
                 <Logout />
             </nav>
                 ) : (
-            <nav>
-                <NavLink 
-                    exact
-                    to='/login'
-                >
-                    Login
-                </NavLink>
-                <NavLink 
-                    exact
-                    to='/signup'
-                >
-                    SignUp
-                </NavLink>
-            </nav>
+                <Welcome simple={true} />
         )
     }
 }

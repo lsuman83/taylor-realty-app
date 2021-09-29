@@ -1,36 +1,40 @@
-import Navbar from './components/Navbar'
-import { Home } from './components/home/Home'
-import Login from './components/auth/Login'
-import Signup from './components/auth/Signup'
+import React from 'react'
 import { BrowserRouter as Router,
-          Switch,
-          Route } from 'react-router-dom'
+        Switch,
+        Route } from 'react-router-dom'
+import { Welcome } from './components/welcome'
+import { Home } from './components/home/Home'
+import Logout from './components/auth/Logout'
+import withAuth from './components/auth/withAuth'
 
-
-function App() {
+function App(){
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route 
-            exact
-            path='/'
-            component={Home}
-            />
-          <Route
-            exact
-            path='/login'
-            component={Login}
-            />
-          <Route
-            exact
-            path='/signup'
-            component={Signup}
-            />
-        </Switch>
-      </Router>
-    </div>
+      <div className="App">
+        <Router>
+          <Switch>
+                <Route
+                exact
+                path='/login'
+                component={() => <Welcome simple={true}/>}
+                />
+                <Route
+                exact
+                path='/signup'
+                component={() => <Welcome simple={false}/>}
+                />
+                <Route
+                exact
+                path='/current_user'
+                component={withAuth(Home)}
+                />
+                <Route
+                exact
+                path='/logout'
+                component={Logout}
+                />
+            </Switch>
+        </Router>
+      </div>
   );
 }
 

@@ -1,7 +1,10 @@
+import Navbar from '../Navbar'
+
+
 export const Home = () => {
     return(
         <div>
-            Taylor Realty
+            <Navbar />
         </div>
     )
 }
