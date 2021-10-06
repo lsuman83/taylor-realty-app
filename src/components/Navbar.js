@@ -13,15 +13,27 @@ class Navbar extends React.Component {
     
         const {authChecked, loggedIn, currentUser} = this.props
 
-        debugger
+    
         return loggedIn ? (
             <nav>
                 {currentUser.email}
                 <NavLink 
                     exact
-                    to='/'
+                    to={`/${currentUser.username}`}
                 >
                     Home
+                </NavLink>
+                <NavLink
+                    exact
+                    to='/business/search'
+                >
+                    Search Businesses
+                </NavLink>
+                <NavLink 
+                    exact
+                    to={`/${currentUser.username}/profile`}
+                >
+                    Profile
                 </NavLink>
                 <Logout />
             </nav>
