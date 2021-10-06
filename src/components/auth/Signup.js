@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from "react-redux";
 import { signupUser } from '../../actions/auth';
 import { useState } from 'react'
@@ -7,15 +6,13 @@ import { useHistory } from 'react-router-dom'
 
 
 
-const Signup = ({dispatchUserSignup}) => {
-    debugger
+const Signup = ({dispatchUserSignup, current_user}) => {
     const [username, setUser] = useState('')
     const [password, setPass] = useState('')
     const [email, setEmail] = useState('')
     const [first_name, setFN] = useState('')
     const [last_name, setLN] = useState('')
-    const [address_1, setAdd1] = useState('')
-    const [address_2, setAdd2] = useState('')
+    const [address, setAdd] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [zip, setZip] = useState('')
@@ -24,14 +21,14 @@ const Signup = ({dispatchUserSignup}) => {
     const [error, setErr] = useState(false)
     const history = useHistory()       
 
-   
+
 
     const onSubmit = (event) => {
         event.preventDefault();
-    
-        dispatchUserSignup(username, email, password, first_name, last_name, address_1, address_2, city, state, zip, 
-            phone, role)
-            .then(() => history.push('/current_user'))
+
+        dispatchUserSignup({username, email, password, first_name, last_name, address, city, state, zip, 
+            phone, role})
+            .then(() => history.push(`/${username}`))
             .catch(() => setErr(true))
     }
 
@@ -67,25 +64,15 @@ const Signup = ({dispatchUserSignup}) => {
                     <div className="flex flex-row w-full mt-4 px-4">
                     <input 
                             type="text" 
-                            name="address_1" 
-                            id="address_1"
-                            value={address_1}
-                            onChange={(e) => setAdd1(e.target.value)} 
-                            placeholder="Address line 1" 
+                            name="address" 
+                            id="address"
+                            value={address}
+                            onChange={(e) => setAdd(e.target.value)} 
+                            placeholder="Address" 
                             className="flex flex-col w-full p-4 text-lg rounded-sm bg-black"
                             />
                     </div>
-                    <div className="flex flex-row w-full mt-4 px-4">
-                    <input 
-                            type="text" 
-                            name="address_2" 
-                            id="address_2"
-                            value={address_2}
-                            onChange={(e) => setAdd2(e.target.value)} 
-                            placeholder="Address line 2" 
-                            className="flex flex-col w-full p-4 text-lg rounded-sm bg-black"
-                            />
-                    </div>
+            
                     <div className="flex flex-row w-full mt-4 px-4 space-x-4">
                     <input 
                             type="text" 
@@ -191,10 +178,17 @@ const Signup = ({dispatchUserSignup}) => {
     
 }
 
+const mapStateToProps = ({auth: {authChecked, loggedIn, current_user}}) => {
+    return {
+        authChecked,
+        loggedIn,
+        current_user
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatchUserSignup: (credentials) => dispatch(signupUser(credentials))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
