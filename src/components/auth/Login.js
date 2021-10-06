@@ -5,20 +5,20 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 
-
 const Login = ({dispatchLoginUser}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPass] = useState('')
     const [error, setErr] = useState(false)    
     const history = useHistory();
+    
 
     
     const onSubmit = (event) => {
         event.preventDefault();
     
         dispatchLoginUser({email, password})
-            .then(() => history.push('/current_user'))
+            .then((currentUser) => history.push(`/${currentUser.payload.username}`))
             .catch(() => setErr(true))
     }
 
@@ -78,8 +78,6 @@ const Login = ({dispatchLoginUser}) => {
         )
     
 }
-
-
 
 const mapDispatchToProps = (dispatch) => {
     return {
